@@ -4,6 +4,7 @@ import { closeMenu } from "../utils/navSlice";
 import { useSearchParams } from "react-router-dom";
 import VideoInfo from "./VideoInfo";
 import CommentThread from "./CommentThread";
+import LiveChat from "./LiveChat";
 // import Comment from "./Comment";
 // import CommentReply from "./CommentReply";
 const Watchpage = () => {
@@ -19,18 +20,23 @@ const Watchpage = () => {
   };
   return (
     <div className="flex flex-col mx-10">
-      <div className="w-[70%]">
-        <iframe
-          width="990.64"
-          height="550"
-          src={
-            "https://www.youtube.com/embed/" + params.get("v") + "?autoplay=1"
-          }
-          title="YouTube video player"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-        ></iframe>
+      <div className="flex">
+        <div className="w-[70%]">
+          <iframe
+            width="990.64"
+            height="550"
+            src={
+              "https://www.youtube.com/embed/" + params.get("v") + "?autoplay=1"
+            }
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          ></iframe>
+        </div>
+        <div className="w-[30%] border border-gray-400 mx-4 rounded-lg">
+          <LiveChat />
+        </div>
       </div>
 
       <div className="flex justify-between my-2">
