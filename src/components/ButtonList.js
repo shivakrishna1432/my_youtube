@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "./Button";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const ButtonList = () => {
   const buttonList = [
@@ -49,8 +50,10 @@ const ButtonList = () => {
         onClick={slideLeft}
       />
       <div className="flex overflow-hidden scroll-smooth" id="slider">
-        {buttonList.map((btn, index) => (
-          <Button name={btn} key={index} />
+        {buttonList?.map((btn, index) => (
+          <Link to={"/results?search_query=" + btn} key={index}>
+            <Button name={btn} />
+          </Link>
         ))}
       </div>
       <MdChevronRight

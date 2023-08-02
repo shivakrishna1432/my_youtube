@@ -1,4 +1,4 @@
-const API_KEY = "AIzaSyBfF_zpI8GFaPRgJ1juIc2UvmpdiBQZFEw";
+const API_KEY = "AIzaSyA75j09eMPKMJ6bb0dSlort0jNCEERyO4s";
 
 export const YOUTUBE_API =
   "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key=" +
@@ -15,6 +15,11 @@ export const COMMENTS_API =
   "https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&maxResults=30&key=" +
   API_KEY +
   "&videoId=";
+
+export const VIDEO_SUGGESTION_API =
+  "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=40&type=video&key=" +
+  API_KEY +
+  "&relatedToVideoId=";
 const messageList = [
   "Shoutout to the mods!",
   "Can we get a follow train?",

@@ -22,14 +22,15 @@ const LiveChat = () => {
           profile: generateProfileImage(),
         })
       );
-    }, 4000);
+    }, 2000);
     return () => clearInterval(timer);
     //eslint-disable-next-line
   }, []);
   return (
     <div>
-      <div className="w-full ">
+      <div>
         <h1 className="font-semibold p-2">Live Chat</h1>
+        <hr className="border border-gray-400" />
         <div className="flex flex-col-reverse overflow-y-auto h-[450px]">
           {message.map((chat, i) => (
             <ChatMessage

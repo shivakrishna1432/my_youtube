@@ -11,19 +11,20 @@ const VideoInfo = () => {
   const [showDescription, setShowDescription] = useState(false);
   const [params] = useSearchParams();
   const videoId = params.get("v");
-  const likeCount = videoInfo?.statistics?.likeCount;
-  const description = videoInfo?.snippet?.localized?.description || "";
-  const views = videoInfo?.statistics?.viewCount;
+  const likeCount = videoInfo?.items[0]?.statistics?.likeCount;
+  const description =
+    videoInfo?.items[0]?.snippet?.localized?.description || "";
+  const views = videoInfo?.items[0]?.statistics?.viewCount;
 
   useEffect(() => {
     getVideoInfo();
     //eslint-disable-next-line
-  }, []);
+  }, [videoId]);
 
   const getVideoInfo = async () => {
     const data = await fetch(VIDEO_INFO_API + videoId);
     const json = await data.json();
-    setVideoInfo(json?.items[0]);
+    setVideoInfo(json);
   };
   return (
     <div>

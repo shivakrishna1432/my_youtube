@@ -5,6 +5,8 @@ import { useSearchParams } from "react-router-dom";
 import VideoInfo from "./VideoInfo";
 import CommentThread from "./CommentThread";
 import LiveChat from "./LiveChat";
+import WatchPageVideos from "./WatchPageVideos";
+
 // import Comment from "./Comment";
 // import CommentReply from "./CommentReply";
 const Watchpage = () => {
@@ -19,7 +21,7 @@ const Watchpage = () => {
     dispatch(closeMenu());
   };
   return (
-    <div className="flex flex-col mx-10">
+    <div className="flex flex-col mx-5">
       <div className="flex">
         <div className="w-[70%]">
           <iframe
@@ -34,7 +36,7 @@ const Watchpage = () => {
             allowFullScreen
           ></iframe>
         </div>
-        <div className="w-[30%] border border-gray-400 mx-4 rounded-lg">
+        <div className="w-[30%] border border-gray-400 ml-4 rounded-lg">
           <LiveChat />
         </div>
       </div>
@@ -46,7 +48,9 @@ const Watchpage = () => {
             <CommentThread videoId={params.get("v")} />
           </div>
         </div>
-        <div className="w-[30%]">Suggest</div>
+        <div className="w-[30%] ml-6">
+          <WatchPageVideos />
+        </div>
       </div>
     </div>
   );

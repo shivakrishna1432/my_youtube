@@ -8,15 +8,20 @@ const VideoContainer = () => {
 
   useEffect(() => {
     getVideos();
+    //eslint-disable-next-line
   }, []);
   const getVideos = async () => {
     const data = await fetch(YOUTUBE_API);
     const json = await data.json();
-    setVideos(json?.items);
+    setVideos(json.items);
+    console.log(json.items);
   };
+  // if (videos?.length === 0) {
+  //   return null;
+  // }
   return (
     <div className="flex flex-wrap">
-      {videos.map((video) => (
+      {videos?.map((video) => (
         <Link to={"/watch?v=" + video.id} key={video.id}>
           <VideosCard info={video} />
         </Link>
