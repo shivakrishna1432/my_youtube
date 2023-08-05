@@ -22,7 +22,7 @@ const SideBar = () => {
     return null;
   }
   return (
-    <div className="col-span-1 shadow-lg w-60">
+    <div className="col-span-1 shadow-lg w-60 mt-1">
       <ul>
         <Link to="/">
           <div className="flex mx-2 gap-3 items-center bg-gray-300 rounded-lg h-10">

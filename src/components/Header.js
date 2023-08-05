@@ -6,12 +6,14 @@ import { FaCircleUser } from "react-icons/fa6";
 import { FiSun } from "react-icons/fi";
 import { YOUTUBE_SEARCH_API } from "../utils/constant";
 import { searchResults } from "../utils/searchSlice";
+import { Link } from "react-router-dom";
+import ResultContainer from "./ResultContainer";
 // const rootEl = document.getElementById("root");
 // rootEl.classList.add("bg-gray");
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  const [showSuggestions, setShowSuggestions] = useState(true);
+  const [showSuggestions, setShowSuggestions] = useState(false);
   const dispatch = useDispatch();
   const searchCache = useSelector((store) => store.search);
   useEffect(() => {
@@ -40,12 +42,16 @@ const Header = () => {
     );
   };
 
+  // const handleSuggestions = () => {
+  //   setShowSuggestions(false);
+  // };
+
   const handleToggle = () => {
     dispatch(toggleMenu());
   };
   return (
-    <div className="grid grid-flow-col p-5 m-2 shadow-lg">
-      <div className="col-span-1 flex">
+    <div className="grid grid-flow-col p-3 shadow-lg">
+      <div className="col-span-1 flex items-center">
         <img
           onClick={() => handleToggle()}
           className="h-8 cursor-pointer"
@@ -61,7 +67,7 @@ const Header = () => {
         </a>
       </div>
       <div className="col-span-10 px-10 pl-40">
-        <div>
+        <form onSubmit={(e) => e.preventDefault()}>
           <input
             type="text"
             placeholder="Search"
@@ -69,31 +75,28 @@ const Header = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={() => setShowSuggestions(true)}
-            onBlur={() => setShowSuggestions(false)}
+            // onBlur={() => setShowSuggestions(false)}
           />
-          <button
-            className="border border-gray-400 bg-gray-200 px-3 py-2 rounded-r-full"
-            type="search"
-          >
-            🔍
-          </button>
-        </div>
+          <Link to={`/results?search_query=${searchQuery}`}>
+            <button
+              className="border border-gray-400 bg-gray-200 px-3 py-2 rounded-r-full"
+              type="search"
+            >
+              🔍
+            </button>
+          </Link>
+        </form>
         <div className="absolute w-[31.5rem] rounded-lg shadow-lg bg-white">
           <ul>
             {showSuggestions &&
               suggestions.map((s, index) => (
-                <li
-                  className="px-3 font-bold py-2 hover:bg-gray-200 rounded-sm"
-                  key={index}
-                >
-                  🔍 {s}
-                </li>
+                <ResultContainer name={s} key={index} />
               ))}
           </ul>
         </div>
       </div>
 
-      <div className="col-span-1 flex mt-1">
+      <div className="col-span-1 flex mt-1 items-center">
         <FiSun className="text-3xl mr-3" />
         <IoMdNotificationsOutline className="text-3xl" />
 

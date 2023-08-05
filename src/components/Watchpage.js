@@ -25,7 +25,7 @@ const Watchpage = () => {
       <div className="flex">
         <div className="w-[70%]">
           <iframe
-            width="990.64"
+            className="w-full"
             height="550"
             src={
               "https://www.youtube.com/embed/" + params.get("v") + "?autoplay=1"

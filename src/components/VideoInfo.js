@@ -11,10 +11,9 @@ const VideoInfo = () => {
   const [showDescription, setShowDescription] = useState(false);
   const [params] = useSearchParams();
   const videoId = params.get("v");
-  const likeCount = videoInfo?.items[0]?.statistics?.likeCount;
-  const description =
-    videoInfo?.items[0]?.snippet?.localized?.description || "";
-  const views = videoInfo?.items[0]?.statistics?.viewCount;
+  const likeCount = videoInfo?.statistics?.likeCount;
+  const description = videoInfo?.snippet?.localized?.description || "";
+  const views = videoInfo?.statistics?.viewCount;
 
   useEffect(() => {
     getVideoInfo();
@@ -24,8 +23,12 @@ const VideoInfo = () => {
   const getVideoInfo = async () => {
     const data = await fetch(VIDEO_INFO_API + videoId);
     const json = await data.json();
-    setVideoInfo(json);
+    setVideoInfo(json?.items[0]);
+    // console.log(videoInfo);
   };
+  if (!videoInfo) {
+    return null;
+  }
   return (
     <div>
       <h1 className="text-xl font-bold mb-3">{videoInfo?.snippet?.title}</h1>
@@ -88,7 +91,7 @@ const VideoInfo = () => {
             </span>
           ) : (
             <span
-              className="font-bold cursor-pointer active:bg-gray-400 m-3"
+              className="font-bold cursor-pointer active:bg-gray-400 m-3 rounded-lg"
               onClick={() => setShowDescription(true)}
             >
               Show More
