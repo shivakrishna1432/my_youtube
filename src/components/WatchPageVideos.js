@@ -23,11 +23,18 @@ const WatchPageVideos = () => {
   return (
     <div>
       <h1 className="font-bold mx-2">Related Videos</h1>
-      {suggestedVideos?.map((videos) => (
-        <Link to={"/watch?v=" + videos?.id?.videoId} key={videos?.id}>
-          <VideoSuggestionCard videoInfo={videos} />
-        </Link>
-      ))}
+      <ul>
+        {suggestedVideos?.map((videos) => (
+          <Link
+            to={"/watch?v=" + videos?.id?.videoId}
+            key={videos?.id?.videoId}
+          >
+            <li>
+              <VideoSuggestionCard videoInfo={videos} />
+            </li>
+          </Link>
+        ))}
+      </ul>
     </div>
   );
 };

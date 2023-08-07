@@ -31,11 +31,15 @@ const SearchResults = () => {
         Here are the Search results for:{" "}
         <span className="font-bold text-lg">{query}</span>
       </h1>
-      {searchResults.map((item) => (
-        <Link to={"/watch?v=" + item?.id?.videoId} key={item?.id?.videoId}>
-          <ResultCard searchCard={item} />
-        </Link>
-      ))}
+      <ul>
+        {searchResults.map((item) => (
+          <Link to={"/watch?v=" + item?.id?.videoId} key={item?.id?.videoId}>
+            <li>
+              <ResultCard searchCard={item} />
+            </li>
+          </Link>
+        ))}
+      </ul>
     </div>
   );
 };

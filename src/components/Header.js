@@ -50,8 +50,8 @@ const Header = () => {
     dispatch(toggleMenu());
   };
   return (
-    <div className="grid grid-flow-col p-3 shadow-lg">
-      <div className="col-span-1 flex items-center">
+    <div className="grid grid-flow-col p-3 items-center">
+      <div className="col-span-1 flex">
         <img
           onClick={() => handleToggle()}
           className="h-8 cursor-pointer"
@@ -96,7 +96,7 @@ const Header = () => {
         </div>
       </div>
 
-      <div className="col-span-1 flex mt-1 items-center">
+      <div className="col-span-1 flex mt-1">
         <FiSun className="text-3xl mr-3" />
         <IoMdNotificationsOutline className="text-3xl" />
 

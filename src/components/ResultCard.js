@@ -5,7 +5,7 @@ const ResultCard = ({ searchCard }) => {
   //   console.log(searchCard?.id?.videoId);
   return (
     <div>
-      <div className="flex mx-8 shadow-lg hover:scale-105 cursor-pointer p-3">
+      <div className="flex mx-8 shadow-lg hover:scale-105 cursor-pointer p-3 hover:duration-75 rounded-lg">
         <img
           className="h-[150px] w-[280px] rounded-lg"
           src={thumbnails?.medium?.url}
