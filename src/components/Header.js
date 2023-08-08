@@ -8,6 +8,7 @@ import { YOUTUBE_SEARCH_API } from "../utils/constant";
 import { searchResults } from "../utils/searchSlice";
 import { Link } from "react-router-dom";
 import ResultContainer from "./ResultContainer";
+import { GoSearch } from "react-icons/go";
 // const rootEl = document.getElementById("root");
 // rootEl.classList.add("bg-gray");
 const Header = () => {
@@ -67,11 +68,14 @@ const Header = () => {
         </a>
       </div>
       <div className="col-span-10 px-10 pl-40">
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form
+          className="flex"
+          onSubmit={(e) => e.preventDefault(setShowSuggestions(false))}
+        >
           <input
             type="text"
             placeholder="Search"
-            className="w-1/2 border pl-5 p-2 border-gray-400 rounded-l-full hover:"
+            className="w-1/2 border pl-5 h-[40px] border-gray-400 rounded-l-full hover:"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={() => setShowSuggestions(true)}
@@ -79,10 +83,10 @@ const Header = () => {
           />
           <Link to={`/results?search_query=${searchQuery}`}>
             <button
-              className="border border-gray-400 bg-gray-200 px-3 py-2 rounded-r-full"
+              className="border border-gray-400 bg-gray-200 hover:bg-gray-300 px-3 h-[40px] rounded-r-full"
               type="search"
             >
-              🔍
+              <GoSearch />
             </button>
           </Link>
         </form>

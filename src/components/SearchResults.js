@@ -4,6 +4,7 @@ import { useSearchParams, Link } from "react-router-dom";
 import { SEARCH_RESULTS_API } from "../utils/constant";
 import ButtonList from "./ButtonList";
 import ResultCard from "./ResultCard";
+import shortid from "shortid";
 
 const SearchResults = () => {
   const [params] = useSearchParams();
@@ -26,14 +27,14 @@ const SearchResults = () => {
   }
   return (
     <div>
-      <ButtonList />
+      <ButtonList key={shortid.generate()} />
       <h1 className="font-semibold mx-4 mt-4 text-md">
         Here are the Search results for:{" "}
         <span className="font-bold text-lg">{query}</span>
       </h1>
       <ul>
         {searchResults.map((item) => (
-          <Link to={"/watch?v=" + item?.id?.videoId} key={item?.id?.videoId}>
+          <Link to={"/watch?v=" + item?.id?.videoId} key={shortid.generate()}>
             <li>
               <ResultCard searchCard={item} />
             </li>
