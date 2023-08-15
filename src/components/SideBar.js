@@ -30,7 +30,7 @@ const SideBar = () => {
             <li className="text-md">Home</li>
           </div>
         </Link>
-        <Link to={"/results?search_query=Shorts"}>
+        <Link to={"/shorts"}>
           <div className="flex mx-2 gap-3 cursor-pointer hover:bg-gray-200 mt-2 items-center rounded-lg h-10">
             <VscDeviceCameraVideo className="text-xl ml-3" />
             <li className="text-md">Shorts</li>
@@ -43,28 +43,36 @@ const SideBar = () => {
           </div>
         </Link>
         <hr className="border-gray-400 mx-3 mt-3" />
-        <div className="flex mx-2 gap-3 mt-4 items-center cursor-pointer hover:bg-gray-200 rounded-lg h-10">
-          <MdOutlineVideoLibrary className="text-xl ml-3" />
-          <li className="text-md">Library</li>
-        </div>
-        <Link to={"/results?search_query=Subscriptions"}>
+        <Link to={"/results?search_query=Library"}>
+          <div className="flex mx-2 gap-3 mt-4 items-center cursor-pointer hover:bg-gray-200 rounded-lg h-10">
+            <MdOutlineVideoLibrary className="text-xl ml-3" />
+            <li className="text-md">Library</li>
+          </div>
+        </Link>
+        <Link to={"/results?search_query=History"}>
           <div className="flex mx-2 gap-3 mt-2 items-center cursor-pointer hover:bg-gray-200 rounded-lg h-10">
             <VscHistory className="text-xl ml-3" />
             <li className="text-md">History</li>
           </div>
         </Link>
-        <div className="flex mx-2 gap-3 mt-2 items-center cursor-pointer hover:bg-gray-200 rounded-lg h-10">
-          <VscPlayCircle className="text-xl ml-3" />
-          <li className="text-md">Your Videos</li>
-        </div>
-        <div className="flex mx-2 gap-3 mt-2 items-center cursor-pointer hover:bg-gray-200 rounded-lg h-10">
-          <MdOutlineWatchLater className="text-xl ml-3" />
-          <li className="text-md">Watch Later</li>
-        </div>
-        <div className="flex mx-2 gap-3 mt-2 items-center cursor-pointer hover:bg-gray-200 rounded-lg h-10">
-          <AiOutlineLike className="text-xl ml-3" />
-          <li className="text-md">Liked Videos</li>
-        </div>
+        <Link to={"/results?search_query=Your Videos"}>
+          <div className="flex mx-2 gap-3 mt-2 items-center cursor-pointer hover:bg-gray-200 rounded-lg h-10">
+            <VscPlayCircle className="text-xl ml-3" />
+            <li className="text-md">Your Videos</li>
+          </div>
+        </Link>
+        <Link to={"/results?search_query=Watch Later"}>
+          <div className="flex mx-2 gap-3 mt-2 items-center cursor-pointer hover:bg-gray-200 rounded-lg h-10">
+            <MdOutlineWatchLater className="text-xl ml-3" />
+            <li className="text-md">Watch Later</li>
+          </div>
+        </Link>
+        <Link to={"/results?search_query=Liked Videos"}>
+          <div className="flex mx-2 gap-3 mt-2 items-center cursor-pointer hover:bg-gray-200 rounded-lg h-10">
+            <AiOutlineLike className="text-xl ml-3" />
+            <li className="text-md">Liked Videos</li>
+          </div>
+        </Link>
         {/* <div className="flex mx-2 gap-3 mt-2 items-center cursor-pointer hover:bg-gray-200 rounded-lg h-10">
           <RiArrowDownSLine className="text-xl ml-3" />
           <li className="text-md">Show More</li>

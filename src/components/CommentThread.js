@@ -13,7 +13,7 @@ const CommentThread = ({ videoId }) => {
   }, [videoId]);
 
   const getComments = async () => {
-    const data = await fetch(COMMENTS_API + videoId);
+    const data = await fetch(COMMENTS_API + `&videoId=${videoId}`);
     const json = await data.json();
     setCommentThread(json?.items);
   };

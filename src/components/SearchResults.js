@@ -17,7 +17,7 @@ const SearchResults = () => {
   }, [query]);
 
   const getSearchContainer = async () => {
-    const data = await fetch(SEARCH_RESULTS_API + query);
+    const data = await fetch(SEARCH_RESULTS_API + `&q=${query}`);
     const json = await data.json();
     // console.log(json?.items[1]);
     setSearchResults(json?.items);

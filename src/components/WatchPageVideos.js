@@ -13,7 +13,7 @@ const WatchPageVideos = () => {
   }, [videoId]);
 
   const getSuggestedVideos = async () => {
-    const data = await fetch(VIDEO_SUGGESTION_API + videoId);
+    const data = await fetch(VIDEO_SUGGESTION_API);
     const json = await data.json();
     setSuggestedVideos(json?.items);
   };

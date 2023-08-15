@@ -3,18 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/navSlice";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { FaCircleUser } from "react-icons/fa6";
-import { FiSun } from "react-icons/fi";
 import { YOUTUBE_SEARCH_API } from "../utils/constant";
 import { searchResults } from "../utils/searchSlice";
 import { Link } from "react-router-dom";
 import ResultContainer from "./ResultContainer";
 import { GoSearch } from "react-icons/go";
+import { useNavigate } from "react-router-dom";
 // const rootEl = document.getElementById("root");
 // rootEl.classList.add("bg-gray");
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const searchCache = useSelector((store) => store.search);
   useEffect(() => {
@@ -70,12 +71,15 @@ const Header = () => {
       <div className="col-span-10 px-10 pl-40">
         <form
           className="flex"
-          onSubmit={(e) => e.preventDefault(setShowSuggestions(false))}
+          onSubmit={(e) => {
+            e.preventDefault();
+            navigate(`/results?search_query=${searchQuery}`);
+          }}
         >
           <input
             type="text"
             placeholder="Search"
-            className="w-1/2 border pl-5 h-[40px] border-gray-400 rounded-l-full hover:"
+            className="w-1/2 border pl-5 h-[40px] border-gray-400 rounded-l-full"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={() => setShowSuggestions(true)}
@@ -93,7 +97,7 @@ const Header = () => {
         <div className="absolute w-[31.5rem] rounded-lg shadow-lg bg-white">
           <ul>
             {showSuggestions &&
-              suggestions.map((s, index) => (
+              suggestions?.map((s, index) => (
                 <ResultContainer name={s} key={index} />
               ))}
           </ul>
@@ -101,7 +105,6 @@ const Header = () => {
       </div>
 
       <div className="col-span-1 flex mt-1">
-        <FiSun className="text-3xl mr-3" />
         <IoMdNotificationsOutline className="text-3xl" />
 
         <div>

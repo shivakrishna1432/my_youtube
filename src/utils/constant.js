@@ -1,29 +1,19 @@
-const API_KEY = "AIzaSyChgp22KWp73bMgzwJoFlY7auvhDsPwktw";
+// const API_KEY = "AIzaSyDVwTEFLIzMUEzehFsX4-ueYe3qprypT3U";
 
-export const YOUTUBE_API =
-  "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key=" +
-  API_KEY;
+export const YOUTUBE_API = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key=${process.env.REACT_APP_API_KEY}`;
 
 export const YOUTUBE_SEARCH_API =
-  "https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
+  "https://clients1.google.com/complete/search?client=firefox&ds=yt&q=";
 
-export const VIDEO_INFO_API =
-  "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&key=" +
-  API_KEY +
-  "&id=";
-export const COMMENTS_API =
-  "https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&maxResults=30&key=" +
-  API_KEY +
-  "&videoId=";
+export const VIDEO_INFO_API = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&key=${process.env.REACT_APP_API_KEY}`;
+export const COMMENTS_API = `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&maxResults=30&key=${process.env.REACT_APP_API_KEY}`;
 
-export const VIDEO_SUGGESTION_API =
-  "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=40&type=video&key=" +
-  API_KEY +
-  "&relatedToVideoId=";
-export const SEARCH_RESULTS_API =
-  "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&key=" +
-  API_KEY +
-  "&q=";
+export const VIDEO_SUGGESTION_API = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=40&type=video&key=${process.env.REACT_APP_API_KEY}`;
+export const SEARCH_RESULTS_API = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&key=${process.env.REACT_APP_API_KEY}`;
+export const SHORTS_API =
+  `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&type=video&videoDuration=short&key=` +
+  `${process.env.REACT_APP_API_KEY}` +
+  `&q=trendingshorts`;
 
 const messageList = [
   "Shoutout to the mods!",

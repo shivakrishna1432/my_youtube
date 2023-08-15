@@ -21,10 +21,14 @@ const VideoInfo = () => {
   }, [videoId]);
 
   const getVideoInfo = async () => {
-    const data = await fetch(VIDEO_INFO_API + videoId);
-    const json = await data.json();
-    setVideoInfo(json?.items[0]);
-    // console.log(videoInfo);
+    try {
+      const data = await fetch(VIDEO_INFO_API + `&id=${videoId}`);
+      const json = await data.json();
+      setVideoInfo(json?.items[0]);
+      // console.log(videoInfo);
+    } catch (e) {
+      console.log(e);
+    }
   };
   if (!videoInfo) {
     return null;
