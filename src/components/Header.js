@@ -6,7 +6,6 @@ import { FaCircleUser } from "react-icons/fa6";
 import { YOUTUBE_SEARCH_API } from "../utils/constant";
 import { searchResults } from "../utils/searchSlice";
 import { Link } from "react-router-dom";
-import ResultContainer from "./ResultContainer";
 import { GoSearch } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
 // const rootEl = document.getElementById("root");
@@ -15,8 +14,8 @@ const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const searchCache = useSelector((store) => store.search);
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -44,6 +43,12 @@ const Header = () => {
     );
   };
 
+  const handleSuggestion = (event) => {
+    setSearchQuery(event.target.innerText);
+    setShowSuggestions(false);
+    navigate("/results?search_query=" + encodeURI(event.target.innerText));
+    setSearchQuery("");
+  };
   // const handleSuggestions = () => {
   //   setShowSuggestions(false);
   // };
@@ -69,13 +74,7 @@ const Header = () => {
         </a>
       </div>
       <div className="col-span-10 px-10 pl-40">
-        <form
-          className="flex"
-          onSubmit={(e) => {
-            e.preventDefault();
-            navigate(`/results?search_query=${searchQuery}`);
-          }}
-        >
+        <div className="flex">
           <input
             type="text"
             placeholder="Search"
@@ -83,7 +82,7 @@ const Header = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={() => setShowSuggestions(true)}
-            // onBlur={() => setShowSuggestions(false)}
+            onBlur={() => setShowSuggestions(false)}
           />
           <Link to={`/results?search_query=${searchQuery}`}>
             <button
@@ -93,12 +92,19 @@ const Header = () => {
               <GoSearch />
             </button>
           </Link>
-        </form>
+        </div>
         <div className="absolute w-[31.5rem] rounded-lg shadow-lg bg-white">
           <ul>
             {showSuggestions &&
+              suggestions?.length > 0 &&
               suggestions?.map((s, index) => (
-                <ResultContainer name={s} key={index} />
+                <li
+                  key={s}
+                  onMouseDown={(e) => handleSuggestion(e)}
+                  className="px-3 font-semibold py-2 hover:bg-gray-200 rounded-sm flex items-center cursor-pointer"
+                >
+                  <GoSearch className="mr-3" /> {s}
+                </li>
               ))}
           </ul>
         </div>
